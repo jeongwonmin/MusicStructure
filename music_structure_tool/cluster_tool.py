@@ -106,10 +106,10 @@ class ClusterTool(object):
                 np.repeat(1.0e-16, vecs.shape[0]), (vecs.shape[1], 1)).transpose()) 
             return n_vecs
         
-        n_eigvec = normalize(eigvec)
-    
         clusters = []
-        for i in range(1, n_eigvec.shape[1]+1):
+        for i in range(1, 11):
+            eigvec_sub = eigvec[:,:i]
+            n_eigvec = normalize(eigvec)
             pred = KMeans(n_clusters=i).fit_predict(n_eigvec)
             clusters.append(pred)
         
